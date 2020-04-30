@@ -1,0 +1,41 @@
+﻿@page "{id}"
+@model MovieApplication.Pages.Movies.DetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div class="card m-1">
+    <div class="card-header">
+        <h5 class="card-title">
+            @Model.Movie.Titel
+        </h5>
+        <h6 class="card-subtitle text-muted">@Model.Movie.ProductionYear</h6>
+    </div>
+    <div class="card-body">
+        <p>Rate this movie</p>
+        <div class="container-fluid d-block" >
+
+            <form method="post">
+                <input asp-for="Rating" value="1" />
+                <button type="submit" class="far fa-star border-0 " asp-for="Rating" />
+            </form>
+            <form method="post">
+                <input asp-for="Rating" value="2" />
+                <button type="submit" class="far fa-star border-0" asp-for="Rating" />
+            </form>
+            <form method="post">
+                <input asp-for="Rating" value="3" />
+                <button type="submit" class="far fa-star border-0" asp-for="Rating" />
+            </form>
+            <form method="post">
+                <input asp-for="Rating" value="4" />
+                <button type="submit" class="far fa-star border-0" asp-for="Rating" />
+            </form>
+            <form method="post">
+                <input asp-for="Rating" value="5" />
+                <button type="submit" class="far fa-star border-0" asp-for="Rating" />
+            </form>
+        </div>
+    </div>
+</div>

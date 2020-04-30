@@ -1,0 +1,44 @@
+﻿@page
+
+@model MovieApplication.Pages.ListModel
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-info">@Model.Message</div> 
+}
+
+@foreach (var movie in Model.Movies)
+{
+    <a asp-page="Movies/Details" asp-route-id="@movie.Id" class="text-decoration-none">
+        <div class="card m-1">
+            <div class="card-header">
+                <h5 class="card-title">
+                    @movie.Titel
+                </h5>
+            </div>
+            <div class="card-body">
+                @foreach (var genre in movie.Genres)
+                {
+                    <span>@genre.Name</span>
+                }
+                <div class="card-group">
+
+                    <span class="card-text">Average rating</span>
+                    @for (int i = 0; i < movie.AvarageRating; i++)
+                    {
+                        <li class="fas fa-star"></li>
+                    }
+                    @for (int i = 0; i < 5 - movie.AvarageRating; i++)
+                    {
+                        <li class="far fa-star"></li>
+                    }
+                </div>
+            </div>
+        </div>
+    </a>
+}

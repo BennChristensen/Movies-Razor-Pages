@@ -1,0 +1,43 @@
+﻿@page
+@model MovieApplication.Pages.Movies.CreateModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h3>Add a movie</h3>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Movie.Titel"></label>
+        <input asp-for="Movie.Titel" class="form-control" />
+        <span class="text-danger" asp-validation-for="Movie.Titel"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Movie.ProductionYear"></label>
+        <input asp-for="Movie.ProductionYear" class="form-control" />
+        <span class="text-danger" asp-validation-for="Movie.ProductionYear"></span>
+    </div>
+
+    <div class="form-group">
+        <div class="container">
+            <div class="row">
+                <div class="text-center text-secondary col">Select genres</div>
+            </div>
+            <div class="row">
+
+                @foreach (var genre in Model.Genres)
+                {
+                    <div class="col col-3 p-2">
+                        <div class="form-control">
+                            <label class="text-sm-center">
+                                <input asp-for="SelectedGenres[genre.Id]" class="align-content-center" />@genre.Name
+                            </label>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add new movie</button>
+</form>
+
