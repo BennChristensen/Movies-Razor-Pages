@@ -8,8 +8,6 @@ namespace MovieApplication.Storage
         List<Movie> GetAllMovies();
         void AddMovie(Movie movie);
         Movie GetMovieByID(int id);
-
-        List<Genre> GetAllGenres();
-        Genre GetGenreById(int i);
+        void AddRating(int id, int rating);
     }
 }

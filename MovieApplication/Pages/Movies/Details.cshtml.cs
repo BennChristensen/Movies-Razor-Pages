@@ -17,7 +17,7 @@ namespace MovieApplication.Pages.Movies
 
         [BindProperty]
         public Movie Movie { get; set; }
-        [Range(1, 5), HiddenInput]
+        [HiddenInput]
         [BindProperty]
         public int Rating { get; set; }
         public DetailsModel(IMovieData movieData)
@@ -37,7 +37,7 @@ namespace MovieApplication.Pages.Movies
 
         public IActionResult OnPost()
         {
-            movieData.GetMovieByID(Movie.Id).Ratings.Add(new Rating { Stars = Rating });
+            movieData.AddRating(Movie.Id, Rating);
             return RedirectToPage("../Index");
         }
     }

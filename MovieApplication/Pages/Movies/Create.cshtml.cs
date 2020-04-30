@@ -24,7 +24,7 @@ namespace MovieApplication.Pages.Movies
         }
         public void OnGet()
         {
-            Genres = movieData.GetAllGenres();
+            Genres = Enum.GetValues(typeof(Genre)).Cast<Genre>();
             Movie = new Movie();
         }
 
@@ -34,11 +34,11 @@ namespace MovieApplication.Pages.Movies
             {
 
                 Movie.Genres = new List<Genre>();
-                for (int i = 0; i < SelectedGenres.Length - 1; i++)
+                for (int i = 0; i < SelectedGenres.Length; i++)
                 {
                     if (SelectedGenres[i])
                     {
-                        Movie.Genres.Add(movieData.GetGenreById(i));
+                        Movie.Genres.Add((Genre)i);
                     }
                 }
                 movieData.AddMovie(Movie);

@@ -9,11 +9,9 @@ namespace MovieApplication.Storage
     public class InMemoryMovieDataStorage : IMovieData
     {
         public List<Movie> Movies { get; set; }
-        public List<Genre> Genres { get; set; }
         public InMemoryMovieDataStorage()
         {
             Movies = new List<Movie>();
-            Genres = new List<Genre>();
             AddTestData();
         }
 
@@ -31,78 +29,14 @@ namespace MovieApplication.Storage
         {
             return Movies;
         }
-
-        public List<Genre> GetAllGenres()
+        public void AddRating(int id, int rating)
         {
-            return Genres;
-        }
-        public Genre GetGenreById(int i)
-        {
-            return Genres.Where(g => g.Id == i).FirstOrDefault();
+            GetMovieByID(id).Ratings.Add(new Rating { Stars = rating });
         }
 
         public void AddTestData()
         {
-            Genres.Add(new Genre
-            {
-                Id = 1,
-                Name = "Comedy"
-            });
-            Genres.Add(new Genre
-            {
-                Id = 2,
-                Name = "Thriller"
-            });
-            Genres.Add(new Genre
-            {
-                Id = 3,
-                Name = "Drama"
-            });
-            Genres.Add(new Genre
-            {
-                Id = 4,
-                Name = "Action"
-            });
-            Genres.Add(new Genre
-            {
-                Id = 5,
-                Name = "Adventure"
-            });
-            Genres.Add(new Genre
-            {
-                Id = 6,
-                Name = "Fantasy"
-            });
-            Genres.Add(new Genre
-            {
-                Id = 7,
-                Name = "Romance"
-            });
-            Genres.Add(new Genre
-            {
-                Id = 8,
-                Name = "SciFi"
-            });
-            Genres.Add(new Genre
-            {
-                Id = 9,
-                Name = "Western"
-            });
-            Genres.Add(new Genre
-            {
-                Id = 10,
-                Name = "Musical"
-            });
-            Genres.Add(new Genre
-            {
-                Id = 11,
-                Name = "Crime"
-            });
-            Genres.Add(new Genre
-            {
-                Id = 12,
-                Name = "War"
-            });
+
 
             Movies.Add(new Movie
             {
@@ -110,9 +44,9 @@ namespace MovieApplication.Storage
                 Titel = "Parasite ",
                 Genres = new List<Genre>
                     {
-                        Genres.ElementAt(1),
-                        Genres.ElementAt(3),
-                        Genres.ElementAt(2)
+                        Genre.Drama,
+                        Genre.Comedy,
+                        Genre.Thriller
                     },
                 ProductionYear = 2019
             });
@@ -122,20 +56,20 @@ namespace MovieApplication.Storage
                 Titel = "Joker",
                 Genres = new List<Genre>
                     {
-                        Genres.ElementAt(10),
-                        Genres.ElementAt(7),
-                        Genres.ElementAt(3)
+                        Genre.Crime,
+                        Genre.Drama,
+                        Genre.Thriller
                     },
                 ProductionYear = 2019
             });
             Movies.Add(new Movie
             {
                 Id = 3,
-                Titel = "2017",
+                Titel = "1917",
                 Genres = new List<Genre>
                     {
-                        Genres.ElementAt(4),
-                        Genres.ElementAt(6)
+                        Genre.Drama,
+                        Genre.War
                     },
                 ProductionYear = 2019
             });
@@ -145,8 +79,9 @@ namespace MovieApplication.Storage
                 Titel = "Dune",
                 Genres = new List<Genre>
                     {
-                        Genres.ElementAt(11),
-                        Genres.ElementAt(8)
+                        Genre.Adventure,
+                        Genre.Drama,
+                        Genre.SciFi
                     },
                 ProductionYear = 2020
             });
@@ -156,8 +91,9 @@ namespace MovieApplication.Storage
                 Titel = "Avengers: Endgame",
                 Genres = new List<Genre>
                     {
-                        Genres.ElementAt(2),
-                        Genres.ElementAt(7)
+                        Genre.Action,
+                        Genre.Adventure,
+                        Genre.Drama
                     },
                 ProductionYear = 2019
             });

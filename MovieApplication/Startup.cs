@@ -26,7 +26,15 @@ namespace MovieApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IMovieData, InMemoryMovieDataStorage>();
+            var builder = new SqlConnectionStringBuilder(
+                            Configuration.GetConnectionString("MyMoviesConnectionString")
+                          );
+
+            // Add the UseSqlServer code
+            services.AddDbContext<MoviesDataContext>(options =>
+                options.UseSqlServer(builder.ConnectionString));
+
+            services.AddScoped<IMovieData, MoviesDataContext>();
             services.AddRazorPages();
         }
 
